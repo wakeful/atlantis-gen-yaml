@@ -1,0 +1,11 @@
+linters:
+  enable-all: true
+  disable:
+    - funlen
+    - gochecknoglobals
+    - gochecknoinits
+    - paralleltest
+    - scopelint
+    - testpackage
+    - tparallel
+    - varnamelen
