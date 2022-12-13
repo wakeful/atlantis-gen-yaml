@@ -78,27 +78,27 @@ will produce `YAML` file with all `dependencies` from your `terragrunt.hcl` file
 ```yaml
 projects:
 - autoplan:
-  enabled: true
-  when_modified:
-  - '*.hcl'
-  - '*.tf*'
+    enabled: true
+    when_modified:
+      - '*.hcl'
+      - '*.tf*'
   dir: example-acm/certificate
   workflow: terragrunt
 - autoplan:
-  enabled: true
-  when_modified:
-  - '*.hcl'
-  - '*.tf*'
-  - ../certificate
+    enabled: true
+    when_modified:
+      - '*.hcl'
+      - '*.tf*'
+      - ../certificate
   dir: example-acm/record
   workflow: terragrunt
 - autoplan:
-  enabled: true
-  when_modified:
-  - '*.hcl'
-  - '*.tf*'
-  - ../certificate
-  - ../record
+    enabled: true
+    when_modified:
+      - '*.hcl'
+      - '*.tf*'
+      - ../certificate
+      - ../record
   dir: example-acm/validation
   workflow: terragrunt
 ```

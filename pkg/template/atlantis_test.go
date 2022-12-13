@@ -22,10 +22,10 @@ func TestGenerate(t *testing.T) {
 			wantFile: `
 projects:
 - autoplan:
-  enabled: true
-  when_modified:
-  - '*.hcl'
-  - '*.tf*'
+    enabled: true
+    when_modified:
+    - '*.hcl'
+    - '*.tf*'
   dir: empty-file
   workflow: terragrunt
 version: 3
@@ -44,19 +44,19 @@ version: 3
 			wantFile: `
 projects:
 - autoplan:
-  enabled: true
-  when_modified:
-  - '*.hcl'
-  - '*.tf*'
+    enabled: true
+    when_modified:
+    - '*.hcl'
+    - '*.tf*'
   dir: empty-file
   workflow: terragrunt
 - autoplan:
-  enabled: true
-  when_modified:
-  - '*.hcl'
-  - '*.tf*'
-  - ../../vpc
-  - ../sg
+    enabled: true
+    when_modified:
+    - '*.hcl'
+    - '*.tf*'
+    - ../../vpc
+    - ../sg
   dir: with-dep
   workflow: terragrunt
 `,

@@ -13,12 +13,12 @@ func Generate(file io.Writer, items map[string][]string, showVersion bool) error
 projects:
 {{- range $path, $dependencies := .Items }}
 - autoplan:
-  enabled: true
-  when_modified:
-  - '*.hcl'
-  - '*.tf*'
+    enabled: true
+    when_modified:
+    - '*.hcl'
+    - '*.tf*'
 {{- range $dependencies}}
-  - {{ . }}
+    - {{ . }}
 {{- end }}
   dir: {{ $path }}
   workflow: terragrunt
