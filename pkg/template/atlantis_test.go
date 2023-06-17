@@ -9,17 +9,26 @@ func TestGenerate(t *testing.T) {
 	tests := []struct {
 		name        string
 		items       map[string][]string
+		extraConfig string
 		wantFile    string
 		wantErr     bool
-		showVersion bool
 	}{
 		{
-			wantErr:     false,
-			showVersion: true,
+			wantErr: false,
 			items: map[string][]string{
 				"empty-file": nil,
 			},
+			extraConfig: `
+automerge: true
+parallel_apply: false
+parallel_plan: false
+version: 3
+`,
 			wantFile: `
+automerge: true
+parallel_apply: false
+parallel_plan: false
+version: 3
 projects:
 - autoplan:
     enabled: true
@@ -28,12 +37,10 @@ projects:
     - '*.tf*'
   dir: empty-file
   workflow: terragrunt
-version: 3
 `,
 		},
 		{
-			wantErr:     false,
-			showVersion: false,
+			wantErr: false,
 			items: map[string][]string{
 				"empty-file": nil,
 				"with-dep": {
@@ -41,8 +48,7 @@ version: 3
 					"../sg",
 				},
 			},
-			wantFile: `
-projects:
+			wantFile: `projects:
 - autoplan:
     enabled: true
     when_modified:
@@ -65,7 +71,7 @@ projects:
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			file := &bytes.Buffer{}
-			err := Generate(file, tt.items, tt.showVersion)
+			err := Generate(file, tt.items, tt.extraConfig)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Generate() error = %v, wantErr %v", err, tt.wantErr)
 

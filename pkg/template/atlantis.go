@@ -7,10 +7,13 @@ import (
 )
 
 // Generate create `atlantis` config base on items.
-func Generate(file io.Writer, items map[string][]string, showVersion bool) error {
+func Generate(file io.Writer, items map[string][]string, extraConfig string) error {
 	fileTemplate := template.Must(
 		template.New("").Parse(`
-projects:
+{{- if .Config }}
+{{- .Config }}projects:
+{{- else }}projects:
+{{- end}}
 {{- range $path, $dependencies := .Items }}
 - autoplan:
     enabled: true
@@ -23,17 +26,14 @@ projects:
   dir: {{ $path }}
   workflow: terragrunt
 {{- end }}
-{{- if .ShowVersion }}
-version: 3
-{{- end}}
 `))
 
 	if err := fileTemplate.Execute(file, struct {
-		Items       map[string][]string
-		ShowVersion bool
+		Config string
+		Items  map[string][]string
 	}{
-		Items:       items,
-		ShowVersion: showVersion,
+		Config: extraConfig,
+		Items:  items,
 	}); err != nil {
 		return fmt.Errorf("%w", err)
 	}

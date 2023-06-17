@@ -103,6 +103,47 @@ projects:
   workflow: terragrunt
 ```
 
+## custom atlantis config?
+you can include custom **atlantis** variables by adding them to `.atlantis-conf.yaml` file e.q.
+```yaml
+automerge: true
+parallel_apply: false
+parallel_plan: false
+version: 3
+```
+would produce an `atlantis.yaml` file with the extra config files.
+```yaml
+automerge: true
+parallel_apply: false
+parallel_plan: false
+version: 3
+projects:
+- autoplan:
+    enabled: true
+    when_modified:
+      - '*.hcl'
+      - '*.tf*'
+  dir: example-acm/certificate
+  workflow: terragrunt
+- autoplan:
+    enabled: true
+    when_modified:
+      - '*.hcl'
+      - '*.tf*'
+      - ../certificate
+  dir: example-acm/record
+  workflow: terragrunt
+- autoplan:
+    enabled: true
+    when_modified:
+      - '*.hcl'
+      - '*.tf*'
+      - ../certificate
+      - ../record
+  dir: example-acm/validation
+  workflow: terragrunt
+```
+
 ## ToDo
 - [ ] add `patch` command to edit existing `atlantis.yaml` file
 - [ ] publish pkg via `brew`
