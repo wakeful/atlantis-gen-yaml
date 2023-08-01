@@ -30,6 +30,7 @@ func TestParseDir(t *testing.T) {
 				"with-dep": {
 					"../../vpc",
 					"../sg",
+					"../src",
 				},
 			},
 		},

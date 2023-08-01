@@ -31,7 +31,7 @@ func TestGetDependencies(t *testing.T) {
 			name:    "we should get a map of string slices",
 			path:    "with-dep/terragrunt.hcl",
 			wantErr: false,
-			want:    []string{"../../vpc", "../sg"},
+			want:    []string{"../../vpc", "../sg", "../src"},
 		},
 	}
 	for _, tt := range tests {
