@@ -1,12 +1,30 @@
 linters:
   enable-all: true
   disable:
-    - depguard
+    - deadcode
+    - exhaustivestruct
+    - exhaustruct
     - funlen
-    - gochecknoglobals
-    - gochecknoinits
+    - golint
+    - ifshort
+    - interfacer
+    - maligned
+    - nosnakecase
     - paralleltest
     - scopelint
+    - structcheck
     - testpackage
-    - tparallel
+    - varcheck
     - varnamelen
+linters-settings:
+  depguard:
+    rules:
+      main:
+        allow:
+          - $gostd
+          - github.com/gruntwork-io/terragrunt/config
+          - github.com/gruntwork-io/terragrunt/options
+          - github.com/wakeful/atlantis-gen-yaml/pkg/common
+          - github.com/wakeful/atlantis-gen-yaml/pkg/parser
+          - github.com/wakeful/atlantis-gen-yaml/pkg/template
+          - github.com/wakeful/atlantis-gen-yaml/pkg/terragrunt

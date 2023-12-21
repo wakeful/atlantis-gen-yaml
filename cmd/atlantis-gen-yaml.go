@@ -11,35 +11,29 @@ import (
 	"github.com/wakeful/atlantis-gen-yaml/pkg/template"
 )
 
-var (
-	targetPath  string
-	showVersion bool
-	version     = "dev"
-)
-
-func init() {
-	flag.StringVar(&targetPath, "path", ".", "PATH where to search for terragrunt.hcl files")
-	flag.BoolVar(&showVersion, "version", false, "show version")
-}
+var version = "dev"
 
 const name = ".atlantis-conf.yaml"
 
 func main() {
+	targetPath := flag.String("path", ".", "PATH where to search for terragrunt.hcl files")
+	showVersion := flag.Bool("version", false, "show version")
 	flag.Parse()
+	log.SetOutput(os.Stdout)
 
-	if showVersion {
+	if *showVersion {
 		log.Println(version)
 		os.Exit(0)
 	}
 
-	searchPath, err := common.NormalisePath(targetPath)
+	searchPath, err := common.NormalisePath(*targetPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	output := parser.ParseDir(searchPath)
 	if len(output) == 0 {
-		log.Fatalf("no terragrunt.hcl found in %s dir", targetPath)
+		log.Fatalf("no terragrunt.hcl found in %s dir", *targetPath)
 	}
 
 	var extraConfig string

@@ -11,7 +11,7 @@ import (
 
 // GetDependencies parse given file and return the PATH(s) to module(s) it depends on.
 func GetDependencies(path string) ([]string, error) {
-	terragruntOptions, err := options.NewTerragruntOptions(path)
+	terragruntOptions, err := options.NewTerragruntOptionsWithConfigPath(path)
 	if err != nil {
 		return nil, fmt.Errorf("%w", err)
 	}
