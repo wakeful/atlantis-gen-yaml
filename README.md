@@ -143,7 +143,3 @@ projects:
   dir: example-acm/validation
   workflow: terragrunt
 ```
-
-## ToDo
-- [ ] add `patch` command to edit existing `atlantis.yaml` file
-- [ ] publish pkg via `brew`

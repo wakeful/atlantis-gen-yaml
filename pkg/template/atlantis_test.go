@@ -71,12 +71,14 @@ projects:
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			file := &bytes.Buffer{}
+
 			err := Generate(file, tt.items, tt.extraConfig)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Generate() error = %v, wantErr %v", err, tt.wantErr)
 
 				return
 			}
+
 			if gotFile := file.String(); gotFile != tt.wantFile {
 				t.Errorf("Generate() gotFile = %v, want %v", gotFile, tt.wantFile)
 			}

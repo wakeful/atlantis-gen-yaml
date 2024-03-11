@@ -17,10 +17,12 @@ func FindFilesInPath(root string) []string {
 
 			return nil
 		}
+
 		if !info.IsDir() && info.Name() == "terragrunt.hcl" {
 			if strings.Contains(path, "/.terragrunt-cache/") {
 				return nil
 			}
+
 			files = append(files, path)
 		}
 

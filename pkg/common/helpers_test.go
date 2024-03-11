@@ -28,6 +28,7 @@ func TestNormalisePath(t *testing.T) {
 
 				return
 			}
+
 			if got != tt.want {
 				t.Errorf("NormalisePath() got = %v, want %v", got, tt.want)
 			}

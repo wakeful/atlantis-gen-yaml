@@ -1,6 +1,7 @@
 package terragrunt
 
 import (
+	"context"
 	"fmt"
 	"sort"
 	"strings"
@@ -16,11 +17,13 @@ func GetDependencies(path string) ([]string, error) {
 		return nil, fmt.Errorf("%w", err)
 	}
 
-	configFile, err := config.PartialParseConfigFile(path, terragruntOptions, nil, []config.PartialDecodeSectionType{
+	ctx := config.NewParsingContext(context.Background(), terragruntOptions)
+
+	configFile, err := config.PartialParseConfigFile(ctx.WithDecodeList(
 		config.DependencyBlock,
 		config.DependenciesBlock,
 		config.TerraformSource,
-	})
+	), path, nil)
 	if err != nil {
 		return nil, fmt.Errorf("%w", err)
 	}

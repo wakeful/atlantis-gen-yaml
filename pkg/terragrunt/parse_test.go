@@ -42,6 +42,7 @@ func TestGetDependencies(t *testing.T) {
 
 				return
 			}
+
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("GetDependencies() got = %v, want %v", got, tt.want)
 			}
