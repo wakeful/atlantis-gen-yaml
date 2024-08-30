@@ -1,19 +1,12 @@
 linters:
   enable-all: true
   disable:
-    - deadcode
-    - exhaustivestruct
+    - gomnd
+    - execinquery
     - exhaustruct
-    - golint
-    - ifshort
-    - interfacer
-    - maligned
-    - nosnakecase
+    - exportloopref
     - paralleltest
-    - scopelint
-    - structcheck
     - testpackage
-    - varcheck
 issues:
   exclude-rules:
     - path: _test.go
