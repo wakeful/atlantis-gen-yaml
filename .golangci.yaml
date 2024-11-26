@@ -1,8 +1,6 @@
 linters:
   enable-all: true
   disable:
-    - gomnd
-    - execinquery
     - exhaustruct
     - exportloopref
 issues:
