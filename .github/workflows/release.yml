@@ -5,22 +5,24 @@ on:
     tags:
       - '*'
 
-permissions:
-  contents: write
+permissions: { }
 
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
+          persist-credentials: false
       - run: git fetch --force --tags
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@f111f3307d8850f501ac008e886eec1fd1932a34
         with:
           go-version: '>=1.23.3'
-          cache: true
-      - uses: goreleaser/goreleaser-action@v6.1.0
+          cache: false
+      - uses: goreleaser/goreleaser-action@9ed2f89a662bf1735a48bc8557fd212fa902bebf
         with:
           distribution: goreleaser
           version: latest

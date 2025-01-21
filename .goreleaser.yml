@@ -22,3 +22,7 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+archives:
+  - format: tar.gz
+    files:
+      - LICENSE

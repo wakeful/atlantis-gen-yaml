@@ -19,7 +19,7 @@ linters-settings:
           - $gostd
           - github.com/gruntwork-io/terragrunt/config
           - github.com/gruntwork-io/terragrunt/options
-          - github.com/wakeful/atlantis-gen-yaml/pkg/common
-          - github.com/wakeful/atlantis-gen-yaml/pkg/parser
-          - github.com/wakeful/atlantis-gen-yaml/pkg/template
-          - github.com/wakeful/atlantis-gen-yaml/pkg/terragrunt
+          - github.com/wakeful/atlantis-gen-yaml/internal/common
+          - github.com/wakeful/atlantis-gen-yaml/internal/parser
+          - github.com/wakeful/atlantis-gen-yaml/internal/template
+          - github.com/wakeful/atlantis-gen-yaml/internal/terragrunt

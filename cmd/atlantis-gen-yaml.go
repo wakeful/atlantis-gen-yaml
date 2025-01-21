@@ -1,3 +1,6 @@
+// Copyright 2025 variHQ OÜ
+// SPDX-License-Identifier: BSD-3-Clause
+
 package main
 
 import (
@@ -6,9 +9,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/wakeful/atlantis-gen-yaml/pkg/common"
-	"github.com/wakeful/atlantis-gen-yaml/pkg/parser"
-	"github.com/wakeful/atlantis-gen-yaml/pkg/template"
+	"github.com/wakeful/atlantis-gen-yaml/internal/common"
+	"github.com/wakeful/atlantis-gen-yaml/internal/parser"
+	"github.com/wakeful/atlantis-gen-yaml/internal/template"
 )
 
 var version = "dev"

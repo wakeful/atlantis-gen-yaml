@@ -1,11 +1,14 @@
+// Copyright 2025 variHQ OÜ
+// SPDX-License-Identifier: BSD-3-Clause
+
 package parser
 
 import (
 	"log"
 	"strings"
 
-	"github.com/wakeful/atlantis-gen-yaml/pkg/common"
-	"github.com/wakeful/atlantis-gen-yaml/pkg/terragrunt"
+	"github.com/wakeful/atlantis-gen-yaml/internal/common"
+	"github.com/wakeful/atlantis-gen-yaml/internal/terragrunt"
 )
 
 // ParseDir locate all `terragrunt.hcl` file(s) in given workDir and return them with list of dependencies.
