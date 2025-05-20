@@ -6,6 +6,8 @@ package common
 import "testing"
 
 func TestNormalisePath(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		name    string
 		path    string
@@ -25,6 +27,8 @@ func TestNormalisePath(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+
 			got, err := NormalisePath(tt.path)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NormalisePath() error = %v, wantErr %v", err, tt.wantErr)

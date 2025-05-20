@@ -1,6 +1,12 @@
 // Copyright 2025 variHQ OÜ
 // SPDX-License-Identifier: BSD-3-Clause
 
+// Package main implements the atlantis-gen-yaml tool, which generates the projects section
+// of an atlantis.yaml file by parsing terragrunt.hcl files and their dependencies.
+//
+// The tool scans the specified directory for terragrunt.hcl files, analyses their
+// dependency structure, and produces a properly formatted YAML output suitable
+// for use in an atlantis.yaml configuration file.
 package main
 
 import (

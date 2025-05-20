@@ -9,6 +9,8 @@ import (
 )
 
 func TestFindFilesInPath(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		name string
 		path string
@@ -30,6 +32,8 @@ func TestFindFilesInPath(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+
 			if got := FindFilesInPath(tt.path); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("FindFilesInPath() = %v, want %v", got, tt.want)
 			}

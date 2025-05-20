@@ -14,33 +14,21 @@ linters:
             - github.com/wakeful/atlantis-gen-yaml/internal/template
             - github.com/wakeful/atlantis-gen-yaml/internal/terragrunt
   exclusions:
-    generated: lax
-    presets:
-      - comments
-      - common-false-positives
-      - legacy
-      - std-error-handling
+    generated: disable
     rules:
       - linters:
           - exhaustruct
           - funlen
-          - paralleltest
           - testpackage
           - varnamelen
         path: _test.go
-    paths:
-      - third_party$
-      - builtin$
-      - examples$
+      - linters:
+          - revive
+        path: internal
 formatters:
   enable:
     - gci
     - gofmt
     - gofumpt
     - goimports
-  exclusions:
-    generated: lax
-    paths:
-      - third_party$
-      - builtin$
-      - examples$
+    - golines
