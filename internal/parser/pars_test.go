@@ -1,11 +1,13 @@
 // Copyright 2025 variHQ OÜ
 // SPDX-License-Identifier: BSD-3-Clause
 
-package parser
+package parser_test
 
 import (
 	"reflect"
 	"testing"
+
+	"github.com/wakeful/atlantis-gen-yaml/internal/parser"
 )
 
 func TestParseDir(t *testing.T) {
@@ -44,7 +46,7 @@ func TestParseDir(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			if got := ParseDir(tt.path); !reflect.DeepEqual(got, tt.want) {
+			if got := parser.ParseDir(tt.path); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("ParseDir() = %v, want %v", got, tt.want)
 			}
 		})

@@ -1,6 +1,8 @@
 version: "2"
 linters:
   default: all
+  disable:
+    - wsl # deprecated (since v2.2.0)
   settings:
     depguard:
       rules:
@@ -9,22 +11,23 @@ linters:
             - $gostd
             - github.com/gruntwork-io/terragrunt/config
             - github.com/gruntwork-io/terragrunt/options
+            - github.com/gruntwork-io/terragrunt/pkg/log
             - github.com/wakeful/atlantis-gen-yaml/internal/common
             - github.com/wakeful/atlantis-gen-yaml/internal/parser
             - github.com/wakeful/atlantis-gen-yaml/internal/template
             - github.com/wakeful/atlantis-gen-yaml/internal/terragrunt
+    revive:
+      rules:
+        - name: package-comments
+          disabled: true
   exclusions:
     generated: disable
     rules:
       - linters:
           - exhaustruct
           - funlen
-          - testpackage
           - varnamelen
         path: _test.go
-      - linters:
-          - revive
-        path: internal
 formatters:
   enable:
     - gci

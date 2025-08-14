@@ -47,12 +47,14 @@ func main() {
 
 	var extraConfig string
 
-	if _, errReadConfFile := os.Stat(name); errReadConfFile == nil {
+	_, errReadConfFile := os.Stat(name)
+	if errReadConfFile == nil {
 		buff, _ := os.ReadFile(name)
 		extraConfig = string(buff)
 	}
 
-	if err := template.Generate(os.Stdout, output, extraConfig); err != nil {
-		log.Fatal(fmt.Errorf("%w", err))
+	errGenerate := template.Generate(os.Stdout, output, extraConfig)
+	if errGenerate != nil {
+		log.Fatal(fmt.Errorf("%w", errGenerate))
 	}
 }

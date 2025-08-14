@@ -31,13 +31,14 @@ func Generate(file io.Writer, items map[string][]string, extraConfig string) err
 {{- end }}
 `))
 
-	if err := fileTemplate.Execute(file, struct {
+	err := fileTemplate.Execute(file, struct {
 		Config string
 		Items  map[string][]string
 	}{
 		Config: extraConfig,
 		Items:  items,
-	}); err != nil {
+	})
+	if err != nil {
 		return fmt.Errorf("%w", err)
 	}
 

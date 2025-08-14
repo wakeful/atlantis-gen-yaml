@@ -1,9 +1,13 @@
 // Copyright 2025 variHQ OÜ
 // SPDX-License-Identifier: BSD-3-Clause
 
-package common
+package common_test
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/wakeful/atlantis-gen-yaml/internal/common"
+)
 
 func TestNormalisePath(t *testing.T) {
 	t.Parallel()
@@ -29,7 +33,7 @@ func TestNormalisePath(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			got, err := NormalisePath(tt.path)
+			got, err := common.NormalisePath(tt.path)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("NormalisePath() error = %v, wantErr %v", err, tt.wantErr)
 

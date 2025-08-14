@@ -1,11 +1,13 @@
 // Copyright 2025 variHQ OÜ
 // SPDX-License-Identifier: BSD-3-Clause
 
-package terragrunt
+package terragrunt_test
 
 import (
 	"reflect"
 	"testing"
+
+	"github.com/wakeful/atlantis-gen-yaml/internal/terragrunt"
 )
 
 func TestGetDependencies(t *testing.T) {
@@ -43,7 +45,7 @@ func TestGetDependencies(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			got, err := GetDependencies(tt.path)
+			got, err := terragrunt.GetDependencies(tt.path)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetDependencies() error = %v, wantErr %v", err, tt.wantErr)
 

@@ -1,11 +1,13 @@
 // Copyright 2025 variHQ OÜ
 // SPDX-License-Identifier: BSD-3-Clause
 
-package template
+package template_test
 
 import (
 	"bytes"
 	"testing"
+
+	"github.com/wakeful/atlantis-gen-yaml/internal/template"
 )
 
 func TestGenerate(t *testing.T) {
@@ -79,7 +81,7 @@ projects:
 
 			file := &bytes.Buffer{}
 
-			err := Generate(file, tt.items, tt.extraConfig)
+			err := template.Generate(file, tt.items, tt.extraConfig)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Generate() error = %v, wantErr %v", err, tt.wantErr)
 

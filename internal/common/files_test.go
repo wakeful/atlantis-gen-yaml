@@ -1,11 +1,13 @@
 // Copyright 2025 variHQ OÜ
 // SPDX-License-Identifier: BSD-3-Clause
 
-package common
+package common_test
 
 import (
 	"reflect"
 	"testing"
+
+	"github.com/wakeful/atlantis-gen-yaml/internal/common"
 )
 
 func TestFindFilesInPath(t *testing.T) {
@@ -34,7 +36,7 @@ func TestFindFilesInPath(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			if got := FindFilesInPath(tt.path); !reflect.DeepEqual(got, tt.want) {
+			if got := common.FindFilesInPath(tt.path); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("FindFilesInPath() = %v, want %v", got, tt.want)
 			}
 		})

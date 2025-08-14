@@ -6,11 +6,14 @@ package terragrunt
 import (
 	"context"
 	"fmt"
+	"io"
 	"sort"
 	"strings"
 
 	"github.com/gruntwork-io/terragrunt/config"
 	"github.com/gruntwork-io/terragrunt/options"
+	"github.com/gruntwork-io/terragrunt/pkg/log"
+	"github.com/gruntwork-io/terragrunt/pkg/log/format"
 )
 
 // GetDependencies parse given file and return the PATH(s) to module(s) it depends on.
@@ -20,13 +23,19 @@ func GetDependencies(path string) ([]string, error) {
 		return nil, fmt.Errorf("%w", err)
 	}
 
-	ctx := config.NewParsingContext(context.Background(), terragruntOptions)
+	nullLogger := log.New(
+		log.WithOutput(io.Discard),
+		log.WithLevel(log.InfoLevel),
+		log.WithFormatter(format.NewFormatter(format.NewKeyValueFormatPlaceholders())),
+	)
+
+	ctx := config.NewParsingContext(context.Background(), nullLogger, terragruntOptions)
 
 	configFile, err := config.PartialParseConfigFile(ctx.WithDecodeList(
 		config.DependencyBlock,
 		config.DependenciesBlock,
 		config.TerraformSource,
-	), path, nil)
+	), nullLogger, path, nil)
 	if err != nil {
 		return nil, fmt.Errorf("%w", err)
 	}
