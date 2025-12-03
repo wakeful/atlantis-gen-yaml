@@ -27,6 +27,7 @@ const name = ".atlantis-conf.yaml"
 func main() {
 	targetPath := flag.String("path", ".", "PATH where to search for terragrunt.hcl files")
 	showVersion := flag.Bool("version", false, "show version")
+
 	flag.Parse()
 	log.SetOutput(os.Stdout)
 
