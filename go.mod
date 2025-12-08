@@ -2,7 +2,7 @@ module github.com/wakeful/atlantis-gen-yaml
 
 go 1.25.4
 
-require github.com/gruntwork-io/terragrunt v0.93.12
+require github.com/gruntwork-io/terragrunt v0.94.0
 
 require (
 	cel.dev/expr v0.25.1 // indirect
