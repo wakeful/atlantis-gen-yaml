@@ -9,8 +9,8 @@ linters:
         main:
           allow:
             - $gostd
-            - github.com/gruntwork-io/terragrunt/config
-            - github.com/gruntwork-io/terragrunt/options
+            - github.com/gruntwork-io/terragrunt/pkg/config
+            - github.com/gruntwork-io/terragrunt/pkg/options
             - github.com/gruntwork-io/terragrunt/pkg/log
             - github.com/wakeful/atlantis-gen-yaml/internal/common
             - github.com/wakeful/atlantis-gen-yaml/internal/parser
