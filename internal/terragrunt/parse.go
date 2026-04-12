@@ -29,7 +29,16 @@ func GetDependencies(path string) ([]string, error) {
 		log.WithFormatter(format.NewFormatter(format.NewKeyValueFormatPlaceholders())),
 	)
 
-	ctx, pCtx := config.NewParsingContext(context.Background(), nullLogger, terragruntOptions)
+	ctx, pCtx := config.NewParsingContext(
+		context.Background(),
+		nullLogger,
+		func(pctx *config.ParsingContext) {
+			pctx.TerragruntConfigPath = terragruntOptions.TerragruntConfigPath
+			pctx.WorkingDir = terragruntOptions.WorkingDir
+			pctx.RootWorkingDir = terragruntOptions.RootWorkingDir
+			pctx.DownloadDir = terragruntOptions.DownloadDir
+		},
+	)
 
 	configFile, err := config.PartialParseConfigFile(ctx, pCtx.WithDecodeList(
 		config.DependencyBlock,
